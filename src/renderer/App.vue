@@ -5,8 +5,6 @@
 
             <core-toolbar class="toolbar"></core-toolbar>
 
-            <core-drawer></core-drawer>
-
             <v-content class="content">
                 <v-container
                     fluid
@@ -22,13 +20,12 @@
 </template>
 
 <script>
-  import CoreDrawer from './components/core/Drawer'
   import CoreToolbar from './components/core/Toolbar'
   import CoreWindowbar from './AppWindowbar'
 
   export default {
     name: 'hex-editor',
-    components: { CoreWindowbar, CoreToolbar, CoreDrawer },
+    components: { CoreWindowbar, CoreToolbar },
     data: () => ({})
   }
 </script>

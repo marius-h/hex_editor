@@ -1,6 +1,6 @@
 <template>
     <v-layout>
-        <v-btn @click="dialog = true">Das wird n Super Editor</v-btn>
+        <v-btn @click="dialog = true">{{ clicked }}</v-btn>
         <v-dialog
                 v-model="dialog"
                 max-width="500"
@@ -21,36 +21,47 @@
                     >schließen</v-btn>
                     <v-btn
                             flat
-                            @click="commit()"
+                            @click="vertifydialog = true"
                     >übernehmen</v-btn>
                 </v-card-actions>
             </v-card>
         </v-dialog>
         <v-dialog
-                v-model="dialog"
+                v-model="vertifydialog"
                 max-width="500"
         >
             <v-card>
-                <v-card-title>Bearbeiten</v-card-title>
+                <v-card-title>Es gibt kein Strg + Z ;-)</v-card-title>
                 <v-card-text>
-                    In was wollen Sie "{{ clicked }}" ändern?
-                    <v-text-field
-                            v-model="textfield"
-                    ></v-text-field>
+                    Wollen Sie wirklich "{{ clicked }}" in "{{ textfield }}" ändern?
                 </v-card-text>
                 <v-card-actions>
                     <v-spacer></v-spacer>
                     <v-btn
                             flat
                             @click="dialog = false"
-                    >schließen</v-btn>
+                    >abbrechen</v-btn>
                     <v-btn
                             flat
                             @click="commit()"
-                    >übernehmen</v-btn>
+                    >JA!</v-btn>
                 </v-card-actions>
             </v-card>
         </v-dialog>
+        <v-snackbar
+                v-model="error"
+                color="error"
+                :timeout="timeout"
+        >
+            {{ Errormessage }}
+            <v-btn
+                    dark
+                    flat
+                    @click="error = false"
+            >
+                schliessen
+            </v-btn>
+        </v-snackbar>
     </v-layout>
 </template>
 <script>
@@ -60,17 +71,26 @@
           dialog: false,
           vertifydialog: false,
           clicked: 'Käsebrot',
-          textfield: ''
+          textfield: '',
+          error: false,
+          Errormessage: 'Das Textfenster darf nicht leer sein!'
         }
       },
       methods: {
         commit () {
-          this.dialog = false
-          this.clicked = this.textfield
+          if (this.textfield === '') {
+            this.error = true
+            this.vertifydialog = false
+          } else {
+            this.clicked = this.textfield
+            this.textfield = ''
+            this.dialog = false
+            this.vertifydialog = false
+          }
         }
       }
     }
-    var hex = require('hexer')
+/* var hex = require('hexer')
     var hexer = hex.Transform()
     hexer.pipe(process.stdout)
 
@@ -85,5 +105,5 @@
       if (chunk.length) {
         hexer.write(chunk)
       }
-    })
+    }) */
 </script>

@@ -4,7 +4,6 @@
  * @bootstrap
  *
  * This file automatically imports all defined components
- * using their folder structure. e.g. components/core/Drawer.vue
  * would be <core-drawer /> and components/StatsCard.vue would
  * be <stats-card />
  */
