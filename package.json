@@ -69,6 +69,7 @@
     "hexer": "^1.5.0",
     "jquery": "^3.3.1",
     "lodash": "latest",
+    "npm": "^6.4.1",
     "update": "^0.7.4",
     "vue": "^2.5.17",
     "vue-electron": "^1.0.6",
