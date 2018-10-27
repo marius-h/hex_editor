@@ -6,18 +6,6 @@
         dark
         app
     >
-        <!--<v-toolbar-side-icon style="height: 20px; width: 20px">
-            <img
-                src="/static/LogoWhite.svg"
-                height="18px"
-            />
-        </v-toolbar-side-icon>
-
-        <span
-            class="white&#45;&#45;text"
-            style="font-size: 15px"
-        >Einfach<span class="secondary&#45;&#45;text">Punkt</span></span>-->
-
         <v-spacer class="titlebar fill-height"></v-spacer>
 
         <div

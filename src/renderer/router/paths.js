@@ -7,10 +7,6 @@ export default [
   {
     path: '',
     // Relative to /src/views
-    view: 'WelcomeView'
-  },
-  {
-    path: '/inspire',
-    view: 'InspireView'
+    view: 'HexView'
   }
 ]
