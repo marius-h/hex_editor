@@ -3,9 +3,9 @@
         <v-app class="app-mount">
             <core-windowbar></core-windowbar>
 
-            <core-toolbar class="toolbar"></core-toolbar>
+            <core-toolbar></core-toolbar>
 
-            <v-content class="content">
+            <v-content>
                 <v-container
                     fluid
                     fill-height
