@@ -51,7 +51,7 @@
         <v-snackbar
                 v-model="error"
                 color="error"
-                :timeout="timeout"
+                timeout="5000"
         >
             {{ Errormessage }}
             <v-btn
