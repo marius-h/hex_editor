@@ -1,7 +1,6 @@
 // The Vue build version to load with the `import` command
 // (runtime-only or standalone) has been set in webpack.base.conf with an alias.
 import Vue from 'vue'
-import UploadButton from 'vuetify-upload-button'
 
 // Components
 import './components'
@@ -26,8 +25,6 @@ if (!process.env.IS_WEB) Vue.use(require('vue-electron'))
 Vue.config.productionTip = false
 
 i18n.locale = 'de'
-
-Vue.use(UploadButton)
 
 /* eslint-disable no-new */
 new Vue({

@@ -8,26 +8,32 @@
     >
         <v-spacer class="titlebar fill-height"></v-spacer>
 
-        <div
-            class="titlebar-btn-other fill-height"
-            @click="onMinimize"
-        >
-            <v-icon>mdi-minus</v-icon>
-        </div>
+        <v-layout row class="ma-0 fill-height justify-end buttons">
+            <v-layout
+                column
+                class="titlebar-btn-other justify-center"
+                @click="onMinimize"
+            >
+                <v-icon class="mr-0">mdi-window-minimize</v-icon>
+            </v-layout>
 
-        <div
-            class="titlebar-btn-other fill-height"
-            @click="onMaximize"
-        >
-            <v-icon>mdi-checkbox-blank-outline</v-icon>
-        </div>
+            <v-layout
+                column
+                class="titlebar-btn-other justify-center"
+                @click="onMaximize"
+            >
+                <!--<v-icon class="mr-0">mdi-checkbox-blank-outline</v-icon>-->
+                <v-icon class="mr-0" v-text="maxIcon"></v-icon>
+            </v-layout>
 
-        <div
-            class="titlebar-btn-close fill-height"
-            @click="onClose"
-        >
-            <v-icon>mdi-close</v-icon>
-        </div>
+            <v-layout
+                column
+                class="titlebar-btn-close justify-center"
+                @click="onClose"
+            >
+                <v-icon class="mr-0">mdi-window-close</v-icon>
+            </v-layout>
+        </v-layout>
     </v-system-bar>
 </template>
 
@@ -37,16 +43,21 @@
 
   export default {
     name: 'app-windowbar',
+    data: () => ({
+      maxIcon: 'mdi-window-maximize'
+    }),
     methods: {
       onMinimize () {
         // Minimize Window to tray
         win.minimize()
       },
       onMaximize () {
-        // Maximize/Minimize Window
+        // Maximize/Unmaximize Window
         if (!win.isMaximized()) {
+          this.maxIcon = 'mdi-window-restore'
           win.maximize()
         } else {
+          this.maxIcon = 'mdi-window-maximize'
           win.unmaximize()
         }
       },
@@ -67,11 +78,13 @@
 
     .titlebar-btn
         -webkit-app-region no-drag
-        max-width 20px
         &-close:hover
             background-color red
         &-other:hover
-            background-color #0d47a1
+            background-color #62efff
+
+    .buttons
+        max-width 150px
 
     .titlebar-icon
         display block

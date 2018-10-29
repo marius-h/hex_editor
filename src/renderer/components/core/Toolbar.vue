@@ -1,6 +1,5 @@
 <template>
     <v-toolbar
-        dark
         color="primary"
         fixed
         app
@@ -8,7 +7,9 @@
         <v-toolbar-side-icon>
             <v-icon>mdi-hexagon-slice-6</v-icon>
         </v-toolbar-side-icon>
-        <v-toolbar-title class="non-selectable" v-text="title"></v-toolbar-title>
+        <v-toolbar-title class="non-selectable toolbar-title">
+            H<span>exe</span>r
+        </v-toolbar-title>
     </v-toolbar>
 </template>
 
@@ -31,5 +32,8 @@
     lang="stylus"
     scoped
 >
+    .toolbar-title
+        font-weight bold
+
 
 </style>

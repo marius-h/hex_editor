@@ -5,11 +5,8 @@
 
             <core-toolbar></core-toolbar>
 
-            <v-content>
-                <v-container
-                    fluid
-                    fill-height
-                >
+            <v-content id="content">
+                <v-container fluid>
                     <v-slide-y-transition mode="out-in">
                         <router-view></router-view>
                     </v-slide-y-transition>
@@ -33,6 +30,17 @@
 <style lang="stylus">
     /*@import url('https://fonts.googleapis.com/css?family=Roboto:300,400,500,700')*/
     @import url('https://fonts.googleapis.com/css?family=Montserrat|Material+Icons')
+
+    ::-webkit-scrollbar
+        display none
+
+    #content
+        max-height 100vh
+        overflow-y scroll
+
+    #content::-webkit-scrollbar
+        display block
+
 
     .app-mount
         -webkit-user-select none

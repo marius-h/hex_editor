@@ -1,14 +1,19 @@
 <template>
     <v-layout column>
-        <div class="btn btn-primary jbtn-file secondary">
+        <div class="btn btn-primary jbtn-file">
             Datei auswählen
             <input
                 type="file"
                 @change="fileSelected"
             />
         </div>
-        <p v-text="hexText">
-        </p>
+        <v-container>
+            <p
+                v-text="hexText"
+                class="hex-content"
+            >
+            </p>
+        </v-container>
         <!--<v-btn @click="dialog = true">{{ clicked }}</v-btn>-->
         <v-dialog
             v-model="dialog"
@@ -76,6 +81,7 @@
         </v-snackbar>
     </v-layout>
 </template>
+
 <script>
   export default {
     data: () => ({
@@ -83,9 +89,9 @@
       vertifydialog: false,
       clicked: 'Käsebrot',
       textfield: '',
-      error: true,
+      error: false,
       Errormessage: 'Das Textfenster darf nicht leer sein!',
-      hexText: 'Test'
+      hexText: ''
     }),
     methods: {
       commit () {
@@ -116,17 +122,23 @@
         }
 
         getStuff().then(data => {
-          console.log(data)
-          this.hexText = hex(data)
+          const options = {
+            // colored: true
+            group: 1,
+            offsetWidth: 8
+          }
+          const inHex = hex(data, options)
+          console.log(inHex)
+          this.hexText = inHex
         })
 
         /// TODO mit "await" content setzen
         /* fs.readFile(file.path, function (err, data) {
-          if (err) throw err
-          const hex = require('hexer')
-          content = hex(data)
-          console.log(content)
-        }) */
+           if (err) throw err
+           const hex = require('hexer')
+           content = hex(data)
+           console.log(content)
+           }) */
 
         // let content = (await fs.readFile(file.path)).data
 
@@ -175,5 +187,9 @@
         outline none
         cursor inherit
         display block
+
+    .hex-content
+        white-space pre-wrap
+        font-family "DejaVu Sans Mono"
 
 </style>
