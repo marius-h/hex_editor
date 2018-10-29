@@ -7,8 +7,7 @@
                 @change="fileSelected"
             />
         </div>
-        <p>
-            <span v-text="hexText"></span>
+        <p v-text="hexText">
         </p>
         <!--<v-btn @click="dialog = true">{{ clicked }}</v-btn>-->
         <v-dialog
@@ -107,18 +106,38 @@
         }
 
         const fs = require('fs')
+        const util = require('util')
+        const hex = require('hexer')
+
+        const readFile = util.promisify(fs.readFile)
+
+        async function getStuff () {
+          return readFile(file.path)
+        }
+
+        getStuff().then(data => {
+          console.log(data)
+          this.hexText = hex(data)
+        })
 
         /// TODO mit "await" content setzen
-        let content = fs.readFile(file.path, function (err, data) {
+        /* fs.readFile(file.path, function (err, data) {
           if (err) throw err
           const hex = require('hexer')
           content = hex(data)
           console.log(content)
-        })
+        }) */
 
-        this.hexText = content
+        // let content = (await fs.readFile(file.path)).data
+
         // let buffer = file.openFile()
         // buffer
+      },
+      loadFile (path) {
+        // const fs = require('fs')
+        /* fs.readFileSync(path, 'binary', async function (err, data) {
+           return await new Buffer(data)
+           }) */
       },
       openFile () {
         if (window.File && window.FileReader && window.FileList && window.Blob) {
