@@ -8,7 +8,7 @@
             <v-icon>mdi-hexagon-slice-6</v-icon>
         </v-toolbar-side-icon>
         <v-toolbar-title class="non-selectable toolbar-title">
-            H<span>exe</span>r
+            H<b>exe</b>r
         </v-toolbar-title>
     </v-toolbar>
 </template>

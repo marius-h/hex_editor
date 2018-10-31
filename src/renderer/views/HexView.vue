@@ -1,21 +1,29 @@
 <template>
     <v-layout column>
-        <div class="btn btn-primary jbtn-file">
+        <v-btn class="secondary jbtn-file" fixed>
             Datei auswählen
             <input
                 type="file"
                 @change="fileSelected"
             />
-        </div>
-        <v-container>
+        </v-btn>
+        <v-textarea
+            box
+            :label="fileName"
+            auto-grow
+            :value="hexText"
+            class="mt-4 hex-content"
+            :disabled="nonEditable"
+        ></v-textarea>
+        <!--<v-container>
             <p
                 v-text="hexText"
                 class="hex-content"
             >
             </p>
-        </v-container>
+        </v-container>-->
         <!--<v-btn @click="dialog = true">{{ clicked }}</v-btn>-->
-        <v-dialog
+        <!--<v-dialog
             v-model="dialog"
             max-width="500"
         >
@@ -65,8 +73,8 @@
                     </v-btn>
                 </v-card-actions>
             </v-card>
-        </v-dialog>
-        <v-snackbar
+        </v-dialog>-->
+        <!--<v-snackbar
             v-model="error"
             color="error"
         >
@@ -78,7 +86,7 @@
             >
                 schliessen
             </v-btn>
-        </v-snackbar>
+        </v-snackbar>-->
     </v-layout>
 </template>
 
@@ -91,7 +99,9 @@
       textfield: '',
       error: false,
       Errormessage: 'Das Textfenster darf nicht leer sein!',
-      hexText: ''
+      hexText: '',
+      fileName: 'Bitte wählen Sie zuerst eine Datei aus.',
+      nonEditable: true
     }),
     methods: {
       commit () {
@@ -117,50 +127,22 @@
 
         const readFile = util.promisify(fs.readFile)
 
+        this.fileName = file.name
+
         async function getStuff () {
           return readFile(file.path)
         }
 
         getStuff().then(data => {
           const options = {
-            // colored: true
             group: 1,
             offsetWidth: 8
           }
           const inHex = hex(data, options)
           console.log(inHex)
           this.hexText = inHex
+          // this.nonEditable = false
         })
-
-        /// TODO mit "await" content setzen
-        /* fs.readFile(file.path, function (err, data) {
-           if (err) throw err
-           const hex = require('hexer')
-           content = hex(data)
-           console.log(content)
-           }) */
-
-        // let content = (await fs.readFile(file.path)).data
-
-        // let buffer = file.openFile()
-        // buffer
-      },
-      loadFile (path) {
-        // const fs = require('fs')
-        /* fs.readFileSync(path, 'binary', async function (err, data) {
-           return await new Buffer(data)
-           }) */
-      },
-      openFile () {
-        if (window.File && window.FileReader && window.FileList && window.Blob) {
-          // good
-          console.log('Funktioniert')
-          let fs = require('fs')
-
-          fs.readFile()
-        } else {
-          alert('Die File API wird in dieser Umgebung nicht unterstützt')
-        }
       }
     }
   }

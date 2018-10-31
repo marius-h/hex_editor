@@ -28,7 +28,7 @@
 </script>
 
 <style lang="stylus">
-    /*@import url('https://fonts.googleapis.com/css?family=Roboto:300,400,500,700')*/
+    @import url('https://fonts.googleapis.com/css?family=Roboto:300,400,500,700')
     @import url('https://fonts.googleapis.com/css?family=Montserrat|Material+Icons')
 
     ::-webkit-scrollbar
@@ -83,7 +83,7 @@
     /*
     Fonts
      */
-    .headline, h1
+    /*.headline, h1
         font-family "Montserrat SemiBold"
         font-size 32px
         line-height 39px
@@ -114,5 +114,5 @@
         opacity .54
 
     html *
-        font-family Montserrat
+        font-family Montserrat*/
 </style>
